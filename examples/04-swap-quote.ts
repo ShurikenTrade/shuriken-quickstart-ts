@@ -9,19 +9,19 @@
 
 import { createClient, formatUsd, logSection } from "../src/helpers.js";
 
-const SOL = "So11111111111111111111111111111111111111112";
 const USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+const JUP = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN";
 
 async function main() {
   const client = createClient();
 
-  // ── Get quote: 0.1 SOL → USDC on Solana ─────────────────────────
-  logSection("Swap Quote: 0.1 SOL → USDC");
+  // ── Get quote: 1 USDC → JUP on Solana ───────────────────────────
+  logSection("Swap Quote: 1 USDC → JUP");
   const quote = await client.swap.getQuote({
     chain: "solana",
-    inputMint: SOL,
-    outputMint: USDC,
-    amount: "100000000", // 0.1 SOL in lamports (9 decimals)
+    inputMint: USDC,
+    outputMint: JUP,
+    amount: "1000000", // 1 USDC (6 decimals)
     slippageBps: 50,
   });
 

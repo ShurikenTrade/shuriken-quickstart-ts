@@ -9,7 +9,7 @@
 
 import { createClient, formatPct, formatUsd, logJson, logSection } from "../src/helpers.js";
 
-const DEFAULT_TOKEN = "solana:So11111111111111111111111111111111111111112"; // Wrapped SOL
+const DEFAULT_TOKEN = "solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"; // JUP
 
 async function main() {
   const client = createClient();
