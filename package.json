@@ -1,0 +1,44 @@
+{
+  "name": "shuriken-quickstart-ts",
+  "version": "0.1.0",
+  "description": "Quickstart examples for the Shuriken TypeScript SDK",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src/ examples/",
+    "lint:fix": "biome check --write src/ examples/",
+    "example:account-info": "tsx examples/01-account-info.ts",
+    "example:search-tokens": "tsx examples/02-search-tokens.ts",
+    "example:token-analytics": "tsx examples/03-token-analytics.ts",
+    "example:swap-quote": "tsx examples/04-swap-quote.ts",
+    "example:portfolio-overview": "tsx examples/05-portfolio-overview.ts",
+    "example:browse-perp-markets": "tsx examples/06-browse-perp-markets.ts",
+    "example:execute-swap": "tsx examples/07-execute-swap.ts",
+    "example:trigger-orders": "tsx examples/08-trigger-orders.ts",
+    "example:perp-trading": "tsx examples/09-perp-trading.ts",
+    "example:stream-token-swaps": "tsx examples/10-stream-token-swaps.ts",
+    "example:stream-wallet": "tsx examples/11-stream-wallet.ts",
+    "example:stream-new-tokens": "tsx examples/12-stream-new-tokens.ts",
+    "example:token-sniper": "tsx examples/13-token-sniper.ts",
+    "example:whale-copy-trader": "tsx examples/14-whale-copy-trader.ts",
+    "example:portfolio-rebalancer": "tsx examples/15-portfolio-rebalancer.ts",
+    "example:new-token-screener": "tsx examples/16-new-token-screener.ts",
+    "example:perps-hedger": "tsx examples/17-perps-hedger.ts",
+    "example:trailing-stop": "tsx examples/18-trailing-stop.ts",
+    "example:watchlist-dashboard": "tsx examples/19-watchlist-dashboard.ts"
+  },
+  "dependencies": {
+    "@shuriken/sdk-ts": "^0.2.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^25.6.0",
+    "dotenv": "^16.4.7",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
