@@ -28,7 +28,11 @@ async function main() {
     console.log(`    Token   : ${event.tokenAddress}`);
     console.log(`    Curve   : ${event.curveAddress}`);
     console.log(`    DEX     : ${event.curveDexType}`);
-    console.log(`    Block   : ${event.blockIndex}`);
+    console.log(`    Creator : ${event.creator}`);
+    console.log(`    Sig     : ${event.signature}`);
+    console.log(`    Slot    : ${event.slot}`);
+    console.log(`    Block   : ${event.blockHeight} (${new Date(event.blockTime * 1000).toISOString()})`);
+    console.log(`    Network : ${event.network}`);
     console.log();
   });
 
