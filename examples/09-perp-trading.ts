@@ -8,7 +8,7 @@
  * limit price is set far from market so it won't fill.
  */
 
-import { createClient, formatUsd, logJson, logSection } from "../src/helpers.js";
+import { createClient, formatUsd, logJson, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -89,4 +89,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

@@ -9,7 +9,7 @@
  */
 
 import type { SvmWalletTokenBalanceEvent } from "@shuriken/sdk-ts";
-import { createClient, formatToken, formatUsd, logSection, sleep } from "../src/helpers.js";
+import { createClient, formatToken, formatUsd, logSection, sleep, handleError } from "../src/helpers.js";
 
 // ── Configuration ──────────────────────────────────────────────────
 const WHALE_ADDRESS = process.argv[2] ?? ""; // Pass whale address as CLI arg
@@ -109,4 +109,4 @@ async function main() {
   }, 10 * 60_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

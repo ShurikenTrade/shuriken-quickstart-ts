@@ -9,7 +9,7 @@
  */
 
 import type { SvmBondingCurveCreationEvent } from "@shuriken/sdk-ts";
-import { createClient, logSection } from "../src/helpers.js";
+import { createClient, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -43,4 +43,4 @@ async function main() {
   }, 60_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

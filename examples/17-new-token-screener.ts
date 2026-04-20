@@ -9,7 +9,7 @@
  */
 
 import type { SvmBondingCurveCreationEvent } from "@shuriken/sdk-ts";
-import { createClient, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 interface TokenScore {
   address: string;
@@ -99,4 +99,4 @@ async function main() {
   }, 5 * 60_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

@@ -8,7 +8,7 @@
  * This is read-only — it only generates quotes, never executes.
  */
 
-import { createClient, formatPct, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatPct, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 // ── Target allocation (token address → target %) ───────────────────
 // Customize these to your desired portfolio weights
@@ -110,4 +110,4 @@ async function main() {
   console.log("\n  To execute these rebalances, use client.swap.execute() with the appropriate parameters.");
 }
 
-main().catch(console.error);
+main().catch(handleError);

@@ -9,7 +9,7 @@
  */
 
 import type { SvmNativeBalanceEvent } from "@shuriken/sdk-ts";
-import { createClient, formatToken, logSection } from "../src/helpers.js";
+import { createClient, formatToken, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -56,4 +56,4 @@ async function main() {
   }, 30_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

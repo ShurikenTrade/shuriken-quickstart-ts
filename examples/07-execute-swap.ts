@@ -8,29 +8,69 @@
  * default (0.001 SOL) but review the parameters before running.
  */
 
-import { createClient, formatUsd, logSection, sleep } from "../src/helpers.js";
+import * as readline from "node:readline/promises";
+import { createClient, formatUsd, logSection, sleep, handleError } from "../src/helpers.js";
 
 const SOL = "So11111111111111111111111111111111111111112";
-const USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+const JUP = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN";
 
 async function main() {
   const client = createClient();
 
-  // Pick the first Solana wallet
+  // Pick a Solana wallet
   const wallets = await client.account.getWallets();
-  const solWallet = wallets.find((w) => w.chain === "solana" || w.chain === null);
-  if (!solWallet) {
+  const solWallets = wallets.filter((w) => w.chain === "solana" || w.chain === null);
+  if (solWallets.length === 0) {
     console.error("No Solana wallet found on your account");
     return;
   }
-  console.log(`Using wallet: ${solWallet.label ?? solWallet.walletId} (${solWallet.address})`);
 
-  // ── Execute: 0.001 SOL → USDC ───────────────────────────────────
-  logSection("Executing Swap: 0.001 SOL → USDC");
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rl.on("close", () => {
+    console.log("\nAborted.");
+    process.exit(0);
+  });
+
+  const balances = await client.portfolio.getBalances({ chain: "solana" });
+
+  let solWallet = solWallets[0];
+  if (solWallets.length > 1) {
+    console.log("\nAvailable Solana wallets:");
+    for (let i = 0; i < solWallets.length; i++) {
+      const w = solWallets[i];
+      const bal = balances.find((b) => b.walletAddress === w.address);
+      const solBal = bal ? `${bal.nativeBalance} SOL` : "unknown balance";
+      console.log(`  [${i + 1}] ${w.label ?? w.walletId} (${w.address}) — ${solBal}`);
+    }
+    const choice = await rl.question(`\nSelect wallet (1-${solWallets.length}):  `);
+    const idx = Number.parseInt(choice, 10) - 1;
+    if (idx < 0 || idx >= solWallets.length) {
+      console.log("Invalid selection. Aborted.");
+      rl.close();
+      return;
+    }
+    solWallet = solWallets[idx];
+  }
+
+  console.log(`\nUsing wallet: ${solWallet.label ?? solWallet.walletId} (${solWallet.address})`);
+
+  // ── Confirm before executing ────────────────────────────────────
+  const answer = await rl.question(
+    "\n⚠️  This will execute a REAL trade: 0.001 SOL → JUP. Type 'yes' to continue:  ",
+  );
+  rl.removeAllListeners("close");
+  rl.close();
+  if (answer !== "yes") {
+    console.log("Aborted.");
+    return;
+  }
+
+  // ── Execute: 0.001 SOL → JUP ───────────────────────────────────
+  logSection("Executing Swap: 0.001 SOL → JUP");
   const result = await client.swap.execute({
     chain: "solana",
     inputMint: SOL,
-    outputMint: USDC,
+    outputMint: JUP,
     amount: "1000000", // 0.001 SOL (9 decimals)
     walletId: solWallet.walletId,
     slippageBps: 100,
@@ -56,4 +96,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

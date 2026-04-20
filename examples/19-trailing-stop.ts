@@ -10,7 +10,7 @@
  */
 
 import type { SvmSwapEvent } from "@shuriken/sdk-ts";
-import { createClient, formatUsd, logSection, sleep } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, sleep, handleError } from "../src/helpers.js";
 
 // ── Configuration ──────────────────────────────────────────────────
 const TOKEN_ADDRESS = process.argv[2] ?? "So11111111111111111111111111111111111111112";
@@ -122,4 +122,4 @@ async function main() {
   }, 5 * 60_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

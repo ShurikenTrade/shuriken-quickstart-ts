@@ -5,7 +5,7 @@
  * Demonstrates the tokens.search() endpoint with optional chain filtering.
  */
 
-import { createClient, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -40,4 +40,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

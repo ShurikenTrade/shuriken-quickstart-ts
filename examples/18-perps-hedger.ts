@@ -7,7 +7,7 @@
  * ⚠️  Set DRY_RUN=false to actually open perp positions.
  */
 
-import { createClient, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 const DRY_RUN = true;
 
@@ -107,4 +107,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

@@ -10,7 +10,7 @@
  */
 
 import type { SvmBondingCurveCreationEvent } from "@shuriken/sdk-ts";
-import { createClient, formatUsd, logSection, sleep } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, sleep, handleError } from "../src/helpers.js";
 
 // ── Configuration ──────────────────────────────────────────────────
 const SNIPE_AMOUNT_LAMPORTS = "1000000"; // 0.001 SOL
@@ -104,4 +104,4 @@ async function main() {
   }, 5 * 60_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

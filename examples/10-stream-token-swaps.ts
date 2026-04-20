@@ -8,7 +8,7 @@
  */
 
 import type { SvmSwapEvent } from "@shuriken/sdk-ts";
-import { createClient, formatToken, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatToken, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 const DEFAULT_TOKEN = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"; // JUP
 
@@ -45,4 +45,4 @@ async function main() {
   }, 30_000);
 }
 
-main().catch(console.error);
+main().catch(handleError);

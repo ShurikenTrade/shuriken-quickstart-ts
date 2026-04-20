@@ -6,7 +6,7 @@
  * good first script to run to verify your API key works.
  */
 
-import { createClient, logJson, logSection } from "../src/helpers.js";
+import { createClient, logJson, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -37,4 +37,4 @@ async function main() {
   logJson("Constraints", usage.constraints);
 }
 
-main().catch(console.error);
+main().catch(handleError);

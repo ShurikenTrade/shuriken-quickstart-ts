@@ -7,7 +7,7 @@
  * Pass a token ID as the first CLI argument, or it defaults to SOL.
  */
 
-import { createClient, formatPct, formatUsd, logJson, logSection } from "../src/helpers.js";
+import { createClient, formatPct, formatUsd, logJson, logSection, handleError } from "../src/helpers.js";
 
 const DEFAULT_TOKEN = "solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"; // JUP
 
@@ -60,4 +60,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

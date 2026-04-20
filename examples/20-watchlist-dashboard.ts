@@ -6,7 +6,7 @@
  * Refreshes every 30 seconds.
  */
 
-import { createClient, formatPct, formatUsd, logSection, sleep } from "../src/helpers.js";
+import { createClient, formatPct, formatUsd, logSection, sleep, handleError } from "../src/helpers.js";
 
 // ── Watchlist (token IDs) ──────────────────────────────────────────
 const WATCHLIST = [
@@ -90,4 +90,4 @@ async function main() {
   console.log("\n  Dashboard complete.");
 }
 
-main().catch(console.error);
+main().catch(handleError);

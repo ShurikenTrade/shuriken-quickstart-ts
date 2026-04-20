@@ -7,7 +7,7 @@
  * Demonstrates getQuote() with route and fee breakdown.
  */
 
-import { createClient, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 const USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
 const JUP = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN";
@@ -47,4 +47,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

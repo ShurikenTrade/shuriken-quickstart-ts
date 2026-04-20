@@ -7,7 +7,7 @@
  * Pass a coin symbol as the first CLI argument, or it defaults to BTC.
  */
 
-import { createClient, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -67,4 +67,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);

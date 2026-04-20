@@ -5,7 +5,7 @@
  * and recent trade history — a complete portfolio snapshot.
  */
 
-import { createClient, formatPct, formatToken, formatUsd, logSection } from "../src/helpers.js";
+import { createClient, formatPct, formatToken, formatUsd, logSection, handleError } from "../src/helpers.js";
 
 async function main() {
   const client = createClient();
@@ -34,10 +34,24 @@ async function main() {
   const positions = await client.portfolio.getPositions();
   console.log(`  Count       : ${positions.positionCount}`);
   console.log(`  Total Value : ${formatUsd(positions.totalValueUsd)}`);
-  for (const pos of positions.positions.slice(0, 10)) {
-    console.log(`\n  ${pos.tokenAddress}`);
-    console.log(`    Wallet : ${pos.walletAddress}`);
-    console.log(`    Price  : ${formatUsd(pos.latestTokenUsdPrice)}`);
+
+  const top = positions.positions.slice(0, 10);
+  const tokenIds = top.map((p) => `${p.network}:${p.tokenAddress}`);
+  const tokenLookup = new Map<string, { name: string; symbol: string }>();
+  if (tokenIds.length > 0) {
+    const batch = await client.tokens.batch({ tokens: tokenIds });
+    for (const t of batch.tokens) {
+      tokenLookup.set(t.address, { name: t.name, symbol: t.symbol });
+    }
+  }
+
+  for (const pos of top) {
+    const token = tokenLookup.get(pos.tokenAddress);
+    const label = token ? `${token.name} (${token.symbol})` : pos.tokenAddress;
+    console.log(`\n  ${label}`);
+    console.log(`    Address : ${pos.tokenAddress}`);
+    console.log(`    Wallet  : ${pos.walletAddress}`);
+    console.log(`    Price   : ${formatUsd(pos.latestTokenUsdPrice, 8)}`);
   }
 
   // ── Recent Trades ────────────────────────────────────────────────
@@ -50,4 +64,4 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main().catch(handleError);
