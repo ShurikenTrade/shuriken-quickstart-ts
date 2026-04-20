@@ -19,13 +19,14 @@
     "example:stream-token-swaps": "tsx examples/10-stream-token-swaps.ts",
     "example:stream-wallet": "tsx examples/11-stream-wallet.ts",
     "example:stream-new-tokens": "tsx examples/12-stream-new-tokens.ts",
-    "example:token-sniper": "tsx examples/13-token-sniper.ts",
-    "example:whale-copy-trader": "tsx examples/14-whale-copy-trader.ts",
-    "example:portfolio-rebalancer": "tsx examples/15-portfolio-rebalancer.ts",
-    "example:new-token-screener": "tsx examples/16-new-token-screener.ts",
-    "example:perps-hedger": "tsx examples/17-perps-hedger.ts",
-    "example:trailing-stop": "tsx examples/18-trailing-stop.ts",
-    "example:watchlist-dashboard": "tsx examples/19-watchlist-dashboard.ts"
+    "example:stream-graduated-tokens": "tsx examples/13-stream-graduated-tokens.ts",
+    "example:token-sniper": "tsx examples/14-token-sniper.ts",
+    "example:whale-copy-trader": "tsx examples/15-whale-copy-trader.ts",
+    "example:portfolio-rebalancer": "tsx examples/16-portfolio-rebalancer.ts",
+    "example:new-token-screener": "tsx examples/17-new-token-screener.ts",
+    "example:perps-hedger": "tsx examples/18-perps-hedger.ts",
+    "example:trailing-stop": "tsx examples/19-trailing-stop.ts",
+    "example:watchlist-dashboard": "tsx examples/20-watchlist-dashboard.ts"
   },
   "dependencies": {
     "@shuriken/sdk-ts": "^0.3.0"
