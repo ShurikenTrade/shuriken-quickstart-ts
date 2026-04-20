@@ -5,11 +5,11 @@ Quickstart examples repo for the `@shuriken/sdk-ts` SDK.
 ## Structure
 
 - `src/helpers.ts` — shared client initialisation and formatters used by all examples
-- `examples/` — flat directory of numbered example scripts (01–19)
+- `examples/` — flat directory of numbered example scripts (01–20)
   - 01–06: basic read-only examples (account, tokens, portfolio, perps markets)
   - 07–09: trading examples that execute writes (swaps, triggers, perp orders)
-  - 10–12: WebSocket streaming examples
-  - 13–19: advanced composite examples combining multiple SDK features
+  - 10–13: WebSocket streaming examples
+  - 14–20: advanced composite examples combining multiple SDK features
 
 ## Running examples
 
@@ -28,4 +28,4 @@ npx tsx examples/01-account-info.ts
 
 ## SDK dependency
 
-This repo depends on `@shuriken/sdk-ts` (currently ^0.2.0). The SDK is ESM-only, so this repo is also `"type": "module"`.
+This repo depends on `@shuriken/sdk-ts` (currently ^0.3.0). The SDK is ESM-only, so this repo is also `"type": "module"`.

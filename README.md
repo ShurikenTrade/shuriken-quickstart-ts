@@ -55,18 +55,19 @@ npm run example:search-tokens
 | 10 | `stream-token-swaps.ts` | Real-time Solana swap events for a token (30s) |
 | 11 | `stream-wallet.ts` | Native SOL balance change notifications (30s) |
 | 12 | `stream-new-tokens.ts` | New bonding curve token creations (60s) |
+| 13 | `stream-graduated-tokens.ts` | Bonding curve graduation events (60s) |
 
 ### Advanced (composite use cases)
 
 | # | Script | Description |
 |---|--------|-------------|
-| 13 | `token-sniper.ts` | Stream new tokens → analyze → auto-swap if criteria met |
-| 14 | `whale-copy-trader.ts` | Monitor a whale wallet → copy their new positions |
-| 15 | `portfolio-rebalancer.ts` | Compare portfolio to target allocation → generate rebalance quotes |
-| 16 | `new-token-screener.ts` | Live leaderboard of new tokens ranked by liquidity and volume |
-| 17 | `perps-hedger.ts` | Delta-hedge spot positions with opposing perp shorts |
-| 18 | `trailing-stop.ts` | Stream price → dynamically update trigger orders as a trailing stop |
-| 19 | `watchlist-dashboard.ts` | Auto-refreshing multi-token dashboard with prices, stats, and liquidity |
+| 14 | `token-sniper.ts` | Stream new tokens → analyze → auto-swap if criteria met |
+| 15 | `whale-copy-trader.ts` | Monitor a whale wallet → copy their new positions |
+| 16 | `portfolio-rebalancer.ts` | Compare portfolio to target allocation → generate rebalance quotes |
+| 17 | `new-token-screener.ts` | Live leaderboard of new tokens ranked by liquidity and volume |
+| 18 | `perps-hedger.ts` | Delta-hedge spot positions with opposing perp shorts |
+| 19 | `trailing-stop.ts` | Stream price → dynamically update trigger orders as a trailing stop |
+| 20 | `watchlist-dashboard.ts` | Auto-refreshing multi-token dashboard with prices, stats, and liquidity |
 
 ## SDK Documentation
 
