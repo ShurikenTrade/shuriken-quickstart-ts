@@ -29,7 +29,7 @@
     "example:watchlist-dashboard": "tsx examples/20-watchlist-dashboard.ts"
   },
   "dependencies": {
-    "@shuriken/sdk-ts": "^0.3.0"
+    "@shuriken/sdk-ts": "^0.6.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

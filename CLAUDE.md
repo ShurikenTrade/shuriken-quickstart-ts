@@ -28,4 +28,4 @@ npx tsx examples/01-account-info.ts
 
 ## SDK dependency
 
-This repo depends on `@shuriken/sdk-ts` (currently ^0.3.0). The SDK is ESM-only, so this repo is also `"type": "module"`.
+This repo depends on `@shuriken/sdk-ts` (currently ^0.6.0). The SDK is ESM-only, so this repo is also `"type": "module"`.

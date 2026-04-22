@@ -9,7 +9,8 @@
  */
 
 import * as readline from "node:readline/promises";
-import { createClient, formatUsd, handleError, logSection } from "../src/helpers.js";
+import { ShurikenApiError } from "@shuriken/sdk-ts";
+import { createClient, formatUsd, handleError, logSection, sleep } from "../src/helpers.js";
 
 const SOL = "So11111111111111111111111111111111111111112";
 
@@ -128,26 +129,62 @@ async function main() {
 
   // ── Create the order ────────────────────────────────────────────
   logSection("Creating Trigger Order");
+  const orderParams = {
+    chain: "solana",
+    inputToken: SOL,
+    outputToken: token.address,
+    amount: amountLamports,
+    walletId: wallet.walletId,
+    triggerMetric: "price_usd",
+    triggerDirection: directionInput,
+    triggerValue: triggerPrice,
+  };
+
   let order;
   try {
-    order = await client.trigger.create({
-      chain: "solana",
-      inputToken: SOL,
-      outputToken: token.address,
-      amount: amountLamports,
-      walletId: wallet.walletId,
-      triggerMetric: "price_usd",
-      triggerDirection: directionInput,
-      triggerValue: triggerPrice,
-    });
-  } catch (err: any) {
-    if (err.message?.includes("NONCE_NOT_INITIALIZED")) {
-      console.error("  This wallet does not have durable nonce accounts initialized.");
-      console.error("  Trigger orders on Solana require durable nonce. Please initialize");
-      console.error("  nonce accounts via the Terminal app (app.shuriken.trade) first.");
-      return;
+    order = await client.trigger.create(orderParams);
+  } catch (err) {
+    if (err instanceof ShurikenApiError && err.apiCode === "NONCE_NOT_INITIALIZED") {
+      console.log("\n  This wallet does not have durable nonce initialized.");
+      console.log("  Trigger orders on Solana require this feature.");
+      console.log("  Enabling it is an on-chain action and incurs a small SOL fee.");
+
+      const rl2 = readline.createInterface({ input: process.stdin, output: process.stdout });
+      const answer = await rl2.question("\n  Enable multisend for this wallet? Type 'yes' to continue:  ");
+      rl2.close();
+      if (answer !== "yes") {
+        console.log("Aborted.");
+        return;
+      }
+
+      console.log("  Enabling multisend...");
+      const { taskId } = await client.account.enableMultisend(wallet.walletId);
+
+      // Poll until the on-chain task completes
+      let done = false;
+      while (!done) {
+        await sleep(2000);
+        const task = await client.tasks.getStatus(taskId);
+        console.log(`  Multisend status: ${task.status}`);
+        switch (task.status) {
+          case "success":
+            console.log("  Multisend enabled successfully.");
+            done = true;
+            break;
+          case "pending":
+          case "submitted":
+            break;
+          default:
+            console.error(`  Multisend task failed: ${task.errorMessage ?? task.status}`);
+            return;
+        }
+      }
+
+      // Retry creating the order
+      order = await client.trigger.create(orderParams);
+    } else {
+      throw err;
     }
-    throw err;
   }
 
   console.log(`  Order ID  : ${order.orderId}`);

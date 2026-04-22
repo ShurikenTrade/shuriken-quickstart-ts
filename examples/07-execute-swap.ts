@@ -84,7 +84,7 @@ async function main() {
   let status = result;
   while (status.status === "submitted" || status.status === "pending") {
     await sleep(2000);
-    status = await client.swap.getStatus(status.taskId);
+    status = await client.tasks.getStatus(status.taskId);
     console.log(`  ${new Date().toISOString()} — ${status.status}`);
   }
 

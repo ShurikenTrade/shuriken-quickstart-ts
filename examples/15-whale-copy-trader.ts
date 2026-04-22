@@ -90,7 +90,7 @@ async function main() {
           let status = result;
           while (status.status === "submitted" || status.status === "pending") {
             await sleep(2000);
-            status = await client.swap.getStatus(status.taskId);
+            status = await client.tasks.getStatus(status.taskId);
           }
           console.log(`    Final: ${status.status} Tx: ${status.txHash ?? "N/A"}\n`);
         } catch (err) {
