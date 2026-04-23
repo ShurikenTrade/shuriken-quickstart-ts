@@ -57,6 +57,16 @@ npm run example:search-tokens
 | 12 | `stream-new-tokens.ts` | New bonding curve token creations (60s) |
 | 13 | `stream-graduated-tokens.ts` | Bonding curve graduation events (60s) |
 
+### Alpha Streams (WebSocket, signal feeds)
+
+| # | Script | Description |
+|---|--------|-------------|
+| 21 | `stream-alpha-personal.ts` | Personal alpha channel — chat messages and call references (60s) |
+| 22 | `stream-alpha-signal-feed-global.ts` | Global signal feed — token signals from all sources (60s) |
+| 23 | `stream-alpha-signal-feed-personal.ts` | Personal signal feed — signals filtered to your feeds (60s) |
+| 24 | `stream-alpha-signal-feed-named.ts` | Named signal feed — signals for a specific feed ID (60s) |
+| 25 | `stream-alpha-signal-feed-profile.ts` | Profile signal feed — signals for a specific profile (60s) |
+
 ### Advanced (composite use cases)
 
 | # | Script | Description |

@@ -26,10 +26,15 @@
     "example:new-token-screener": "tsx examples/17-new-token-screener.ts",
     "example:perps-hedger": "tsx examples/18-perps-hedger.ts",
     "example:trailing-stop": "tsx examples/19-trailing-stop.ts",
-    "example:watchlist-dashboard": "tsx examples/20-watchlist-dashboard.ts"
+    "example:watchlist-dashboard": "tsx examples/20-watchlist-dashboard.ts",
+    "example:stream-alpha-personal": "tsx examples/21-stream-alpha-personal.ts",
+    "example:stream-alpha-signal-feed-global": "tsx examples/22-stream-alpha-signal-feed-global.ts",
+    "example:stream-alpha-signal-feed-personal": "tsx examples/23-stream-alpha-signal-feed-personal.ts",
+    "example:stream-alpha-signal-feed-named": "tsx examples/24-stream-alpha-signal-feed-named.ts",
+    "example:stream-alpha-signal-feed-profile": "tsx examples/25-stream-alpha-signal-feed-profile.ts"
   },
   "dependencies": {
-    "@shuriken/sdk-ts": "^0.6.0"
+    "@shuriken/sdk-ts": "^0.8.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
